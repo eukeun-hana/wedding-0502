@@ -16,6 +16,7 @@ import { Button } from "../button"
 import { LazyDiv } from "../lazyDiv"
 import PhoneIcon from "../../icons/phone-flip-icon.svg?react"
 import EnvelopeIcon from "../../icons/envelope-icon.svg?react"
+import CopyIcon from "../../icons/heart-icon.svg?react"
 
 export const Invitation = () => {
   const { openModal, closeModal } = useModal()
