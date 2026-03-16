@@ -98,7 +98,7 @@ export const Invitation = () => {
                               onClick={() => copyAccount(account)}
                             />
                            
-                          )}
+                         
                         </div>
                       </Fragment>
                     ),
