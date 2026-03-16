@@ -20,6 +20,11 @@ import CopyIcon from "../../icons/heart-icon.svg?react"
 
 export const Invitation = () => {
   const { openModal, closeModal } = useModal()
+
+  const copyAccount = (account: string) => {
+    navigator.clipboard.writeText(account)
+    alert("계좌번호가 복사되었습니다.")
+  }
   return (
     <LazyDiv className="card invitation">
       <h2 className="english">Notice</h2>
