@@ -140,100 +140,85 @@ export const Invitation = () => {
         연락하기
       </Button>
       <div className="break" />
-      {/* 마음 전하실 곳 */}
       <Button
-        onClick={() => {
-          openModal({
-            className: "contact-modal",
-            closeOnClickBackground: true,
-
-            header: (
-              <div className="title-group">
-                <div className="title">마음 전하실 곳</div>
-                <div className="subtitle">
-                  계좌를 누르면 복사됩니다.
-                </div>
-              </div>
-            ),
-
-            content: (
-              <>
-                <div style={{ marginBottom: "0.7rem", fontWeight: "bold" }}>
-                  신랑측
-                </div>
-
-                {GROOM_INFO.map(({ name, bank, account }) => (
-                  <div
-                    key={name}
-                    onClick={() => copyAccount(account)}
-                    style={{
-                      padding: "0.7rem",
-                      borderBottom: "1px solid #eee",
-                      cursor: "pointer",
-                    }}
-                  >
-                    <div style={{ fontSize: "0.9rem" }}>{name}</div>
-
-                    <div
-                      style={{
-                        fontSize: "0.8rem",
-                        opacity: 0.7,
-                      }}
-                    >
-                      {bank} {account}
-                    </div>
-                  </div>
-                ))}
-
-                <div
-                  style={{
-                    marginTop: "1rem",
-                    marginBottom: "0.7rem",
-                    fontWeight: "bold",
-                  }}
+          style={{ width: "100%" }}
+          onClick={() => {
+            openModal({
+              className: "donation-modal",
+              closeOnClickBackground: true,
+              header: <div className="title">마음 전하실 곳</div>,
+              content: (
+                <>
+                  {GROOM_INFO.filter(({ account }) => !!account).map(
+                    ({ relation, name, account }) => (
+                      <div className="account-info" key={relation}>
+                        <div>
+                          <div className="name">
+                            <span className="relation">{relation}</span> {name}
+                          </div>
+                          <div>{account}</div>
+                        </div>
+                        <Button
+                          className="copy-button"
+                          onClick={async () => {
+                            if (account) {
+                              try {
+                                navigator.clipboard.writeText(account)
+                                alert(account + "\n복사되었습니다.")
+                              } catch {
+                                alert("복사에 실패했습니다.")
+                              }
+                            }
+                          }}
+                        >
+                          복사하기
+                        </Button>
+                      </div>
+                    ),
+                  )}
+                  {BRIDE_INFO.filter(({ account }) => !!account).map(
+                    ({ relation, name, account }) => (
+                      <div className="account-info" key={relation}>
+                        <div>
+                          <div className="name">
+                            <span className="relation">{relation}</span> {name}
+                          </div>
+                          <div>{account}</div>
+                        </div>
+                        <Button
+                          className="copy-button"
+                          onClick={async () => {
+                            if (account) {
+                              try {
+                                navigator.clipboard.writeText(account)
+                                alert(account + "\n복사되었습니다.")
+                              } catch {
+                                alert("복사에 실패했습니다.")
+                              }
+                            }
+                          }}
+                        >
+                          복사하기
+                        </Button>
+                      </div>
+                    ),
+                  )}
+                </>
+              ),
+              footer: (
+                <Button
+                  buttonStyle="style2"
+                  className="bg-light-grey-color text-dark-color"
+                  onClick={closeModal}
                 >
-                  신부측
-                </div>
-
-                {BRIDE_INFO.map(({ name, bank, account }) => (
-                  <div
-                    key={name}
-                    onClick={() => copyAccount(account)}
-                    style={{
-                      padding: "0.7rem",
-                      borderBottom: "1px solid #eee",
-                      cursor: "pointer",
-                    }}
-                  >
-                    <div style={{ fontSize: "0.9rem" }}>{name}</div>
-
-                    <div
-                      style={{
-                        fontSize: "0.8rem",
-                        opacity: 0.7,
-                      }}
-                    >
-                      {bank} {account}
-                    </div>
-                  </div>
-                ))}
-              </>
-            ),
-
-            footer: (
-              <Button
-                buttonStyle="style2"
-                className="bg-light-grey-color text-dark-color"
-                onClick={closeModal}
-              >
-                닫기
-              </Button>
-            ),
-          })
-        }}
-      >
-        마음 전하실 곳
-      </Button>
+                  닫기
+                </Button>
+              ),
+            })
+          }}
+        >
+          마음 전하실 곳
+        </Button>
       <div className="break" />
     </LazyDiv>
   )
