@@ -70,14 +70,13 @@
     padding: 0.7rem;
     background-color: var(--alt-bg-color);
     > button {
-      flex: 1.5;
+      flex: 1;
       border-right: 1px solid var(--dark-grey-color);
       position: relative;
       z-index: 3;
       font-size: 0.9rem;
 
       &:last-child {
-        flex: 1;
         border-right: none;
       }
 
